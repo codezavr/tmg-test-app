@@ -1,0 +1,41 @@
+.ChatBox
+  display: flex
+  flex-direction: column
+  height: 75vh
+  width: 50vw
+  background: #fff
+  border-radius: .5vw
+  padding: 2vw 2vw 1vw 2vw
+  box-shadow: 0 0 8px 2px rgba(#000, .15)
+  overflow: auto
+  .ChatBoxWrapper
+    margin-top: auto
+  .ChatBoxInputContainer
+    position: relative
+    margin-top: 1.5vh
+    textarea
+      width: 100%
+      height: 100%
+      resize: none
+      padding: 1.5vh
+      outline: 0
+      border-radius: .3vw
+      border: 1px solid #3c91bf
+    button
+      position: absolute
+      right: 1.5vh
+      top: 50%
+      transform: translateY(-50%)
+      height: 60%
+      min-width: 8%
+      text-transform: uppercase
+      font-weight: bold
+      background: #3c91bf
+      border-radius: 10px
+      color: #fff
+      outline: none
+      border: 0
+
+@media screen and (max-width: 700px)
+  .ChatBox
+    width: 90vw
