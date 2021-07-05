@@ -3,11 +3,13 @@ export interface IMessage {
     message: string
 }
 
+export type IMessages = IMessage[];
+
 export interface IUser {
     name: string
 }
 
 export const LOGGED_USER: IUser = { name: '' };
 
-export const MESSAGES: IMessage[] = [
+export const MESSAGES: IMessages = [
 ];

@@ -1,14 +1,14 @@
 import React, { useCallback, useState } from 'react';
 import './App.sass'
 import NameChanger from '../NameChanger/NameChanger';
-import { IMessage, IUser, LOGGED_USER, MESSAGES } from '../../data/messages';
+import { IMessage, IMessages, IUser, LOGGED_USER, MESSAGES } from '../../data/messages';
 import GlobalError from '../GlobalError/GlobalError';
 import { IError } from '../../data/errors';
 import ChatBox from '../ChatBox/ChatBox';
 
 function App() {
 
-    const [messages, setMessages] = useState<IMessage[]>(MESSAGES);
+    const [messages, setMessages] = useState<IMessages>(MESSAGES);
     const [loggedUser, setLoggedUser] = useState<IUser>(LOGGED_USER);
     const [error, setError] = useState<IError>();
 

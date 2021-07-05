@@ -1,12 +1,12 @@
 import React, { ChangeEvent, useState } from 'react';
 import { ChatBoxMessage } from '../ChatBoxMessage/ChatBoxMessage';
 import './ChatBox.sass'
-import { IUser, IMessage } from '../../data/messages';
+import { IUser, IMessages, IMessage } from '../../data/messages';
 import { ERRORS, IError } from '../../data/errors';
 
 type ChatBoxProps = {
     loggedUser: IUser;
-    messages: IMessage[],
+    messages: IMessages,
     pushMessage: (message: string) => void;
     setError: (error: IError | undefined) => void;
 }
