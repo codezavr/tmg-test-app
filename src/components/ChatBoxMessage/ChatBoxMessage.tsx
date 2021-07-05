@@ -1,8 +1,8 @@
 import React from 'react';
-import './ChantBoxMessage.sass'
+import './ChatBoxMessage.sass'
 import { IMessage } from '../../data/messages';
 
-export function ChantBoxMessage({ message }: { message: IMessage }) {
+export function ChatBoxMessage({ message }: { message: IMessage }) {
     return (
         <>
             <div className="ChatBoxMessageContainer">

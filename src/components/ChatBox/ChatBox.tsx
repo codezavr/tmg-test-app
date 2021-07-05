@@ -1,19 +1,26 @@
-import React, { useState } from 'react';
-import { ChantBoxMessage } from '../ChatBoxMessage/ChatBoxMessage';
+import React, { ChangeEvent, useState } from 'react';
+import { ChatBoxMessage } from '../ChatBoxMessage/ChatBoxMessage';
 import './ChatBox.sass'
 import { IUser, IMessage } from '../../data/messages';
 import { ERRORS, IError } from '../../data/errors';
+
+type ChatBoxProps = {
+    loggedUser: IUser;
+    messages: IMessage[],
+    pushMessage: (message: string) => void;
+    setError: (error: IError | undefined) => void;
+}
 
 function ChatBox({
                      loggedUser,
                      messages,
                      pushMessage,
                      setError
-                 }: { loggedUser: IUser, messages: IMessage[], pushMessage: any, setError: any }) {
+                 }: ChatBoxProps) {
 
     const [message, setMessage] = useState('');
 
-    function changeMessage(event: any) {
+    function changeMessage(event: ChangeEvent<HTMLTextAreaElement>) {
         setMessage(event.target.value);
     }
 
@@ -32,13 +39,13 @@ function ChatBox({
             <div className="ChatBoxWrapper">
                 {
                     messages.map((localMessage: IMessage, index: number) => (
-                        <ChantBoxMessage message={ localMessage } key={ index }/>
+                        <ChatBoxMessage message={ localMessage } key={ index }/>
                     ))
                 }
             </div>
             <div className="ChatBoxInputContainer">
                 <textarea cols={ 30 } rows={ 2 } placeholder="Enter your message" defaultValue={ message }
-                          onChange={ (event: any) => changeMessage(event) }/>
+                          onChange={ (event: ChangeEvent<HTMLTextAreaElement>) => changeMessage(event) }/>
                 <button type="button" onClick={ () => saveMessage(message) }>Send</button>
             </div>
         </div>

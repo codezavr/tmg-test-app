@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import './App.sass'
-import ChatBox from '../ChantBox/ChatBox';
 import NameChanger from '../NameChanger/NameChanger';
 import { IMessage, IUser, LOGGED_USER, MESSAGES } from '../../data/messages';
 import GlobalError from '../GlobalError/GlobalError';
 import { IError } from '../../data/errors';
+import ChatBox from '../ChatBox/ChatBox';
 
 function App() {
 
     const [messages, setMessages] = useState<IMessage[]>(MESSAGES);
     const [loggedUser, setLoggedUser] = useState<IUser>(LOGGED_USER);
-    const [error, setError] = useState<IError | null>();
+    const [error, setError] = useState<IError>();
 
     const pushMessage = (message: string) => {
         const localMessages = [...messages, {
