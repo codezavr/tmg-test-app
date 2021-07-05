@@ -7,19 +7,22 @@ type NameChangerProps = {
     loggedUser: IUser;
     setLoggedUser: (user: IUser) => void;
     setError: (error: IError | undefined) => void;
+    changeUserForMessages: (userName: string) => void;
 }
 
-function NameChanger({ loggedUser, setLoggedUser, setError }: NameChangerProps) {
+function NameChanger({ loggedUser, setLoggedUser, setError, changeUserForMessages }: NameChangerProps) {
 
     const nameInputRef = useRef<HTMLInputElement>(null);
 
     function handleSubmit(event: FormEvent) {
         event.preventDefault();
         if (nameInputRef && nameInputRef.current) {
+            const userName = nameInputRef.current.value;
             setLoggedUser({
-                name: nameInputRef.current.value
+                name: userName
             });
-            setError(undefined)
+            setError(undefined);
+            changeUserForMessages(userName);
         }
     }
 
