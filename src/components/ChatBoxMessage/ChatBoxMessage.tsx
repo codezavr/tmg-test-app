@@ -1,16 +1,20 @@
 import React from 'react';
 import './ChatBoxMessage.sass'
-import { IMessage } from '../../data/messages';
 
-export function ChatBoxMessage({ message }: { message: IMessage }) {
+type ChatBoxMessageProps = {
+    userName: string;
+    message: string;
+}
+
+export function ChatBoxMessage({ userName, message }: ChatBoxMessageProps) {
     return (
         <>
             <div className="ChatBoxMessageContainer">
                 <span className="MessageUser">
-                    { message.name }
+                    { userName }
                 </span>
                 <span className="MessageText">
-                    { message.message }
+                    { message }
                 </span>
             </div>
         </>

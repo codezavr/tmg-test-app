@@ -2,7 +2,11 @@ import React from 'react';
 import './GlobalError.sass'
 import { IError } from '../../data/errors';
 
-function GlobalError({ error }: { error: IError }) {
+type GlobalErrorProps = {
+    error: IError;
+}
+
+function GlobalError({ error }: GlobalErrorProps) {
     return (
         <div className="GlobalError">{ error.message }</div>
     )

@@ -1,16 +1,18 @@
 import React, { FormEvent, useRef } from 'react';
 import { IUser } from '../../data/messages';
 import './NameChanges.sass'
-import { IError } from '../../data/errors';
+import { useChatStore } from '../../hooks/useChatStore';
 
 type NameChangerProps = {
-    loggedUser: IUser;
-    setLoggedUser: (user: IUser) => void;
-    setError: (error: IError | undefined) => void;
-    changeUserForMessages: (userName: string) => void;
+    activeUser: IUser;
 }
 
-function NameChanger({ loggedUser, setLoggedUser, setError, changeUserForMessages }: NameChangerProps) {
+function NameChanger({ activeUser }: NameChangerProps) {
+
+    const {
+        dispatchSetActiveUser,
+        dispatchSetActiveUserError
+    } = useChatStore();
 
     const nameInputRef = useRef<HTMLInputElement>(null);
 
@@ -18,11 +20,9 @@ function NameChanger({ loggedUser, setLoggedUser, setError, changeUserForMessage
         event.preventDefault();
         if (nameInputRef && nameInputRef.current) {
             const userName = nameInputRef.current.value;
-            setLoggedUser({
-                name: userName
-            });
-            setError(undefined);
-            changeUserForMessages(userName);
+
+            dispatchSetActiveUser({ name: userName });
+            dispatchSetActiveUserError(null);
         }
     }
 
@@ -32,7 +32,7 @@ function NameChanger({ loggedUser, setLoggedUser, setError, changeUserForMessage
                 <input type="text" placeholder="Enter your name" ref={ nameInputRef }/>
                 <button type="submit">Submit</button>
             </form>
-            { loggedUser?.name && <div><span className="NameTitle">Username:</span> { loggedUser?.name }</div> }
+            { activeUser?.name && <div><span className="NameTitle">Username:</span> { activeUser?.name }</div> }
         </div>
     )
 }

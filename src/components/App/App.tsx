@@ -1,40 +1,24 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import './App.sass'
 import NameChanger from '../NameChanger/NameChanger';
-import { IMessage, IMessages, IUser, LOGGED_USER, MESSAGES } from '../../data/messages';
 import GlobalError from '../GlobalError/GlobalError';
-import { IError } from '../../data/errors';
 import ChatBox from '../ChatBox/ChatBox';
+import { useChatStore } from '../../hooks/useChatStore';
 
 function App() {
-
-    const [messages, setMessages] = useState<IMessages>(MESSAGES);
-    const [loggedUser, setLoggedUser] = useState<IUser>(LOGGED_USER);
-    const [error, setError] = useState<IError>();
-
-    const pushMessage = useCallback((message: string) => {
-        if (loggedUser.name) {
-            const localMessages = [...messages, {
-                name: loggedUser.name,
-                message: message
-            }];
-            setMessages(localMessages)
-        }
-    }, [loggedUser.name, messages]);
-
-    const changeUserNameForMessages = useCallback((userName: string) => {
-        if (userName) {
-            const localMessages = messages.map((message: IMessage) => ({ ...message, name: userName }));
-            setMessages(localMessages);
-        }
-    }, [messages]);
+    const {
+        getActiveUser,
+        getActiveUserMessages,
+        getActiveUserError
+    } = useChatStore();
 
     return (
         <div className="App">
-            <NameChanger loggedUser={ loggedUser } setLoggedUser={ setLoggedUser } setError={ setError }
-                         changeUserForMessages={ changeUserNameForMessages }/>
-            { error && <GlobalError error={ error }/> }
-            <ChatBox loggedUser={ loggedUser } messages={ messages } pushMessage={ pushMessage } setError={ setError }/>
+            <NameChanger activeUser={ getActiveUser }/>
+            { getActiveUserError && <GlobalError error={ getActiveUserError }/> }
+            <ChatBox activeUser={ getActiveUser }
+                     activeUserMessages={ getActiveUserMessages }
+            />
         </div>
     );
 }
