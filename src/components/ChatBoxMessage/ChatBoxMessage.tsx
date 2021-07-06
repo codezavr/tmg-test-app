@@ -1,5 +1,5 @@
 import React from 'react';
-import './ChatBoxMessage.sass'
+import styles from './ChatBoxMessage.module.sass'
 
 type ChatBoxMessageProps = {
     userName: string;
@@ -9,11 +9,11 @@ type ChatBoxMessageProps = {
 export function ChatBoxMessage({ userName, message }: ChatBoxMessageProps) {
     return (
         <>
-            <div className="ChatBoxMessageContainer">
-                <span className="MessageUser">
+            <div className={ styles.ChatBoxMessageContainer }>
+                <span className={ styles.MessageUser }>
                     { userName }
                 </span>
-                <span className="MessageText">
+                <span className={ styles.MessageText }>
                     { message }
                 </span>
             </div>

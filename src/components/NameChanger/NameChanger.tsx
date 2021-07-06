@@ -1,6 +1,6 @@
 import React, { FormEvent, useRef } from 'react';
 import { IUser } from '../../data/messages';
-import './NameChanges.sass'
+import styles from './NameChanges.module.sass'
 import { useChatStore } from '../../hooks/useChatStore';
 
 type NameChangerProps = {
@@ -27,12 +27,12 @@ function NameChanger({ activeUser }: NameChangerProps) {
     }
 
     return (
-        <div className="NameChanger">
+        <div className={ styles.NameChanger }>
             <form onSubmit={ handleSubmit }>
                 <input type="text" placeholder="Enter your name" ref={ nameInputRef }/>
                 <button type="submit">Submit</button>
             </form>
-            { activeUser?.name && <div><span className="NameTitle">Username:</span> { activeUser?.name }</div> }
+            { activeUser?.name && <div><span className={ styles.NameTitle }>Username:</span> { activeUser?.name }</div> }
         </div>
     )
 }

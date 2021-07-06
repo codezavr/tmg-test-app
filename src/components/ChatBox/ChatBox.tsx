@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
 import { ChatBoxMessage } from '../ChatBoxMessage/ChatBoxMessage';
-import './ChatBox.sass'
+import styles from './ChatBox.module.sass'
 import { IUser, IMessages } from '../../data/messages';
 import { ERRORS, IError } from '../../data/errors';
 import { useChatStore } from '../../hooks/useChatStore';
@@ -38,15 +38,15 @@ function ChatBox({
     }
 
     return (
-        <div className="ChatBox">
-            <div className="ChatBoxWrapper">
+        <div className={ styles.ChatBox }>
+            <div className={ styles.ChatBoxWrapper }>
                 {
                     activeUserMessages.map((message: string, index: number) => (
                         <ChatBoxMessage userName={ activeUser.name } message={ message } key={ index }/>
                     ))
                 }
             </div>
-            <div className="ChatBoxInputContainer">
+            <div className={ styles.ChatBoxInputContainer }>
                 <textarea cols={ 30 } rows={ 2 } placeholder="Enter your message" defaultValue={ message }
                           onChange={ (event: ChangeEvent<HTMLTextAreaElement>) => changeMessage(event) }/>
                 <button type="button" onClick={ () => saveMessage() }>Send</button>

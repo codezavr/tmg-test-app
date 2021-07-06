@@ -1,5 +1,5 @@
 import React from 'react';
-import './GlobalError.sass'
+import styles from './GlobalError.module.sass'
 import { IError } from '../../data/errors';
 
 type GlobalErrorProps = {
@@ -8,7 +8,7 @@ type GlobalErrorProps = {
 
 function GlobalError({ error }: GlobalErrorProps) {
     return (
-        <div className="GlobalError">{ error.message }</div>
+        <div className={ styles.GlobalError }>{ error.message }</div>
     )
 }
 

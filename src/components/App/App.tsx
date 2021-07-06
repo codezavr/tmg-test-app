@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.sass'
+import styles from './App.module.sass'
 import NameChanger from '../NameChanger/NameChanger';
 import GlobalError from '../GlobalError/GlobalError';
 import ChatBox from '../ChatBox/ChatBox';
@@ -13,7 +13,7 @@ function App() {
     } = useChatStore();
 
     return (
-        <div className="App">
+        <div className={ styles.App }>
             <NameChanger activeUser={ getActiveUser }/>
             { getActiveUserError && <GlobalError error={ getActiveUserError }/> }
             <ChatBox activeUser={ getActiveUser }
