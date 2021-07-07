@@ -33,7 +33,7 @@ function ChatBox({
 
         if (!activeUser.name) {
             const error = ERRORS.find((error: IError) => error.id === 1);
-            dispatchSetActiveUserError(error);
+            dispatchSetActiveUserError(error ? error : null);
         }
     }
 

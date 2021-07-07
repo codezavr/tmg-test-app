@@ -24,7 +24,7 @@ export const useChatStore = () => {
     );
 
     const dispatchSetActiveUserError = useCallback(
-        (activeUserMessages: IError | null | undefined) => dispatch(
+        (activeUserMessages: IError | null) => dispatch(
             setActiveUserError(activeUserMessages)
         ),
         [dispatch]
