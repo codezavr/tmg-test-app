@@ -1,41 +1,44 @@
 import { useAppDispatch } from '../store/store';
 import { useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import { selectActiveUser, selectActiveUserError, selectActiveUserMessages, setActiveUser, setActiveUserError, setActiveUserMessages } from '../store/chatSlice';
-import { IUser } from '../data/messages';
+import { IMessage } from '../data/messages';
 import { IError } from '../data/errors';
+import { selectUser, setUser } from '../store/userSlice';
+import { selectMessages, setMessages } from '../store/messagesSlice';
+import { selectError, setError } from '../store/errorSlice';
+import { IUser } from '../data/user';
 
 export const useChatStore = () => {
     const dispatch = useAppDispatch();
 
 
-    const dispatchSetActiveUser = useCallback(
+    const setActiveUser = useCallback(
         (activeUser: IUser) => dispatch(
-            setActiveUser(activeUser)
+            setUser(activeUser)
         ),
         [dispatch]
     );
 
-    const dispatchAddActiveUserMessage = useCallback(
-        (activeUserMessages: string) => dispatch(
-            setActiveUserMessages(activeUserMessages)
+    const addActiveUserMessage = useCallback(
+        (activeUserMessage: IMessage) => dispatch(
+            setMessages(activeUserMessage)
         ),
         [dispatch]
     );
 
-    const dispatchSetActiveUserError = useCallback(
+    const setActiveUserError = useCallback(
         (activeUserMessages: IError | null) => dispatch(
-            setActiveUserError(activeUserMessages)
+            setError(activeUserMessages)
         ),
         [dispatch]
     );
 
     return {
-        dispatchSetActiveUser,
-        dispatchAddActiveUserMessage,
-        dispatchSetActiveUserError,
-        getActiveUser: useSelector(selectActiveUser),
-        getActiveUserMessages: useSelector(selectActiveUserMessages),
-        getActiveUserError: useSelector(selectActiveUserError),
+        setActiveUser,
+        addActiveUserMessage,
+        setActiveUserError,
+        activeUser: useSelector(selectUser),
+        activeUserMessages: useSelector(selectMessages),
+        activeUserError: useSelector(selectError),
     };
 };

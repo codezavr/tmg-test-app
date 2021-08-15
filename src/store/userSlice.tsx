@@ -1,6 +1,6 @@
 import { createSelector, createSlice } from '@reduxjs/toolkit'
-import { IUser } from '../data/messages';
 import { RootState } from './store';
+import { IUser } from '../data/user';
 
 interface ActiveUserState {
     user: IUser,
