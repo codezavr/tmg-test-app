@@ -7,17 +7,17 @@ import { useChatStore } from '../../hooks/useChatStore';
 
 function App() {
     const {
-        getActiveUser,
-        getActiveUserMessages,
-        getActiveUserError
+        activeUser,
+        activeUserMessages,
+        activeUserError
     } = useChatStore();
 
     return (
         <div className={ styles.App }>
-            <NameChanger activeUser={ getActiveUser }/>
-            { getActiveUserError && <GlobalError error={ getActiveUserError }/> }
-            <ChatBox activeUser={ getActiveUser }
-                     activeUserMessages={ getActiveUserMessages }
+            <NameChanger activeUser={ activeUser }/>
+            { activeUserError && <GlobalError error={ activeUserError }/> }
+            <ChatBox activeUser={ activeUser }
+                     activeUserMessages={ activeUserMessages }
             />
         </div>
     );

@@ -1,7 +1,7 @@
 import React, { FormEvent, useRef } from 'react';
-import { IUser } from '../../data/messages';
 import styles from './NameChanges.module.sass'
 import { useChatStore } from '../../hooks/useChatStore';
+import { IUser } from '../../data/user';
 
 type NameChangerProps = {
     activeUser: IUser;
@@ -10,8 +10,8 @@ type NameChangerProps = {
 function NameChanger({ activeUser }: NameChangerProps) {
 
     const {
-        dispatchSetActiveUser,
-        dispatchSetActiveUserError
+        setActiveUser,
+        setActiveUserError
     } = useChatStore();
 
     const nameInputRef = useRef<HTMLInputElement>(null);
@@ -21,8 +21,8 @@ function NameChanger({ activeUser }: NameChangerProps) {
         if (nameInputRef && nameInputRef.current) {
             const userName = nameInputRef.current.value;
 
-            dispatchSetActiveUser({ name: userName });
-            dispatchSetActiveUserError(null);
+            setActiveUser({ userName: userName });
+            setActiveUserError(null);
         }
     }
 
@@ -32,7 +32,7 @@ function NameChanger({ activeUser }: NameChangerProps) {
                 <input type="text" placeholder="Enter your name" ref={ nameInputRef }/>
                 <button type="submit">Submit</button>
             </form>
-            { activeUser?.name && <div><span className={ styles.NameTitle }>Username:</span> { activeUser?.name }</div> }
+            { activeUser?.userName && <div><span className={ styles.NameTitle }>Username:</span> { activeUser?.userName }</div> }
         </div>
     )
 }
